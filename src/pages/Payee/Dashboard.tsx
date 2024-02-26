@@ -1,5 +1,30 @@
+import axios from 'axios'
 import { Table } from 'flowbite-react'
+import { useEffect, useState } from 'react'
+
 const Dashboard = () => {
+  const [tdata, settdata] = useState<any>([])
+
+  useEffect(() => {
+    async function getTdata() {
+      fetch('https://musical-worthy-pheasant.ngrok-free.app/getInvoice', {
+        method: 'get',
+        headers: new Headers({
+          'ngrok-skip-browser-warning': '69420',
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          settdata(data.body)
+        })
+        .catch((err) => console.log(err))
+
+      //   console.log(res)
+    }
+    getTdata()
+  }, [])
+
   return (
     <div>
       <div className="overflow-x-auto text-[#ffff]">
@@ -9,34 +34,24 @@ const Dashboard = () => {
               Invoice name
             </Table.HeadCell>
             <Table.HeadCell className="border-gray-700 bg-[#262732] text-white">
-              Invoice Amount
+              Amount
             </Table.HeadCell>
             <Table.HeadCell className="border-gray-700 bg-[#262732] text-white">
-              Invoice createdAt
+              Description
             </Table.HeadCell>
             <Table.HeadCell className="border-gray-700 bg-[#262732] text-white">
-              Invoice Status
+              Status
             </Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y">
             <Table.Row className=" border-gray-700 bg-[#262732] text-white">
               <Table.Cell className="text-white whitespace-nowrap font-medium ">
-                Design Project
+                {tdata.name}
               </Table.Cell>
-              <Table.Cell>200 USDC</Table.Cell>
-              <Table.Cell>13/2/24</Table.Cell>
+              <Table.Cell> {tdata.amt}</Table.Cell>
+              <Table.Cell>{tdata.desc}</Table.Cell>
               <Table.Cell className={`${true ? 'text-yellow-300' : ''}`}>
                 Pending
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row className=" border-gray-700 bg-[#262732] text-white">
-              <Table.Cell className="text-white whitespace-nowrap font-medium ">
-                Development Project
-              </Table.Cell>
-              <Table.Cell>500 USDC</Table.Cell>
-              <Table.Cell>17/2/24</Table.Cell>
-              <Table.Cell className={`${true ? 'text-green-300' : ''}`}>
-                Paid
               </Table.Cell>
             </Table.Row>
           </Table.Body>

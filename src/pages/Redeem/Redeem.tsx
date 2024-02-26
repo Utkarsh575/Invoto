@@ -8,13 +8,16 @@ import RedeemConfirmationDialog from 'components/Redeem/RedeemConfirmationDialog
 import RedeemForm from 'components/Redeem/RedeemForm'
 import TransactionDialog from 'components/TransactionDialog/TransactionDialog'
 import { TX_HASH_KEY } from 'constants/index'
-import { Transaction, TransactionStatus, TransactionType } from 'contexts/AppContext'
+import {
+  Transaction,
+  TransactionStatus,
+  TransactionType,
+} from 'contexts/AppContext'
 import { useQueryParam } from 'hooks/useQueryParam'
 import { useTransactionPolling } from 'hooks/useTransactionPolling'
 
 function Redeem() {
-  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
-    useState(true)
+  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] = useState(true)
   const [isTransactionDialogOpen, setIsTransactionDialogOpen] = useState(false)
   const {
     txHash,
@@ -32,7 +35,7 @@ function Redeem() {
         '0x20a848ca5e8531143344b250784073b6f8387fd1269ebb4f8e72b3d3ef3b8ce3',
       signature:
         '0x2fa53a29c95e902205ba36cf6dfcd0fb7574b86dd998721693ab90cb670712b9466634f4316a4c635700e8011b3c1000ff572bc4b4290452586331860880e7291ca08c26be603425b29a6ebfdaf9f86e429fb1f3d08de9262bd90a6555b7047b8c568797e3889cad21bb3f37ab0fba451608da7745ec4356da4451d0f10bcded2f1b',
-        nextHash:""
+      nextHash: '',
     } as any,
     setSearchParams,
   } = useQueryParam()
@@ -78,10 +81,9 @@ function Redeem() {
       //   }
       //   // If redeem tx is not complete, open Redeem transaction modal
       // } else
-       if (
+      if (
         transaction.type === TransactionType.REDEEM &&
         transaction.status !== TransactionStatus.COMPLETE
-      
       ) {
         setIsTransactionDialogOpen(true)
       }

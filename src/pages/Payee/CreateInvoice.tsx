@@ -1,6 +1,24 @@
+import axios from 'axios'
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react'
+import { useState } from 'react'
 
 const CreateInvoice = () => {
+  const [formData, setFormData] = useState<any>({})
+  const handleSubmit = async (e: any) => {
+    e.preventDefault()
+    console.log(e.target.value)
+    console.log(formData)
+
+    let res = await axios.post(
+      'https://musical-worthy-pheasant.ngrok-free.app/createInvoice',
+      {
+        body: formData,
+      }
+    )
+
+    console.log(res)
+  }
+
   return (
     <>
       <div className="h-full text-3xl font-bold text-white -translate-y-[100%]">
@@ -8,7 +26,12 @@ const CreateInvoice = () => {
       </div>
 
       <div className="p-0 flex items-center justify-center w-full  text-white translate-y-[-10%]">
-        <form className="flex w-6/12 flex-col gap-4 p-5 bg-[#262732] rounded-md shadow-md ">
+        <form
+          className="flex w-6/12 flex-col gap-4 p-5 bg-[#262732] rounded-md shadow-md "
+          onSubmit={(e: any) => {
+            handleSubmit(e)
+          }}
+        >
           <div className="flex flex-row justify-between gap-10 items-start ">
             <div className="flex flex-col w-1/2">
               <div className="mb-2 block ">
@@ -23,6 +46,9 @@ const CreateInvoice = () => {
                 type="text"
                 placeholder=" Enter the payer email"
                 required
+                onChange={(e: any) => {
+                  setFormData({ ...formData, email: e.target.value })
+                }}
               />
               <div>
                 <div className="mb-2 block">
@@ -37,6 +63,9 @@ const CreateInvoice = () => {
                   type="text"
                   placeholder=" Enter the invoice name"
                   required
+                  onChange={(e: any) => {
+                    setFormData({ ...formData, name: e.target.value })
+                  }}
                 />
                 <div>
                   <div className="mb-2 block">
@@ -51,6 +80,9 @@ const CreateInvoice = () => {
                     type="text"
                     placeholder=" Enter the invoice description"
                     required
+                    onChange={(e: any) => {
+                      setFormData({ ...formData, desc: e.target.value })
+                    }}
                   />
                 </div>
 
@@ -63,10 +95,13 @@ const CreateInvoice = () => {
                     />
                   </div>
                   <TextInput
-                    id="invoice_description"
+                    id="invoice_amt"
                     type="text"
                     placeholder=" Enter the invoice amount"
                     required
+                    onChange={(e: any) => {
+                      setFormData({ ...formData, amt: e.target.value })
+                    }}
                   />
                 </div>
               </div>
@@ -86,6 +121,9 @@ const CreateInvoice = () => {
                   type="text"
                   placeholder=" Enter the chain name"
                   required
+                  onChange={(e: any) => {
+                    setFormData({ ...formData, chainName: e.target.value })
+                  }}
                 />
               </div>
               <div>
@@ -101,12 +139,15 @@ const CreateInvoice = () => {
                   type="text"
                   placeholder=" Enter the chain id"
                   required
+                  onChange={(e: any) => {
+                    setFormData({ ...formData, chainId: e.target.value })
+                  }}
                 />
               </div>
               <div>
                 <div className="mb-2 block">
                   <Label
-                    htmlFor="amount"
+                    htmlFor="addr"
                     value="Wallet Address"
                     className="text-white"
                   />
@@ -116,6 +157,9 @@ const CreateInvoice = () => {
                   type="text"
                   placeholder=" Enter the receiving wallet address"
                   required
+                  onChange={(e: any) => {
+                    setFormData({ ...formData, addr: e.target.value })
+                  }}
                 />
               </div>
             </div>
