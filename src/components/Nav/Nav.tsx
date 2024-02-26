@@ -19,7 +19,7 @@ function NavLink({ route }: NavLinkProps) {
   return (
     <Link
       className={classnames('mr-12 font-semibold', {
-        'text-gumdrop-500': isSelected,
+        'text-white': isSelected,
         'text-licorice-200 hover:text-gumdrop-200 focus:text-gumdrop-200':
           !isSelected,
       })}
@@ -36,7 +36,7 @@ function Nav() {
       <Link className="flex flex-row items-center" to="/">
         {/* <img className="inline h-12" src={logo} alt="logo" /> */}
         <span className="ml-4 text-2xl font-semibold text-white">
-          Cross-Chain Invoice Management
+          Days Invoicing
         </span>
       </Link>
 

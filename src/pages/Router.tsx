@@ -6,6 +6,7 @@ import Payee from './Payee/Payee'
 import Redeem from './Redeem/Redeem'
 import Send from './Send/Send'
 import Transactions from './Transactions/Transactions'
+import CreateInvoice from './Payee/CreateInvoice'
 export interface RouteConfig {
   path: string
   label: string
@@ -18,6 +19,12 @@ export const routes: RouteConfig[] = [
     path: '/',
     label: 'Payee',
     component: Payee,
+    nav: true,
+  },
+  {
+    path: '/create',
+    label: 'Create Invoice',
+    component: CreateInvoice,
     nav: true,
   },
   {
