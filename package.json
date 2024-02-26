@@ -35,6 +35,7 @@
     "@web3-react/types": "^6.0.7",
     "axios": "^0.27.2",
     "ethers": "^5.7.0",
+    "flowbite-react": "^0.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",

@@ -6,7 +6,12 @@ module.exports = {
   important: true,
   darkMode: true,
   mode: 'jit',
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    'node_modules/flowbite-react/lib/esm/**/*.js',
+  ],
+
   theme: {
     fontFamily: {
       sans: ['Circular', ...defaultTheme.fontFamily.sans],
@@ -18,4 +23,5 @@ module.exports = {
       },
     },
   },
+  plugins: [require('flowbite/plugin')],
 }
