@@ -20,7 +20,7 @@ function NavLink({ route }: NavLinkProps) {
     <Link
       className={classnames('mr-12 font-semibold', {
         'text-white': isSelected,
-        'text-licorice-200 hover:text-gumdrop-200 focus:text-gumdrop-200':
+        'text-licorice-200 hover:text-apple-200 focus:text-bazooka-200  hover:bg-transparent hover:shadow-xl':
           !isSelected,
       })}
       to={route.path}
@@ -35,9 +35,7 @@ function Nav() {
     <nav className="flex w-full flex-row items-center p-6">
       <Link className="flex flex-row items-center" to="/">
         {/* <img className="inline h-12" src={logo} alt="logo" /> */}
-        <span className="ml-4 text-2xl font-semibold text-white">
-          Days Invoicing
-        </span>
+        <span className="ml-4 text-3xl font-bold text-white">INVOTO</span>
       </Link>
 
       <div className="ml-auto">

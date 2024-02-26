@@ -69,15 +69,10 @@ function Send() {
 
   return (
     <>
-      <div className="item-center mx-auto flex max-w-4xl flex-col justify-center">
-        <h1>Transfer USDC across chains</h1>
-        <p className="mt-8 text-center text-xl">
-          Circle&apos;s Cross-Chain Transfer Protocol enables USDC to be sent
-          across blockchains without the need to be converted into a asset. All
-          transfers are permissionless and executed on-chain.
-        </p>
+      <div className="item-center mx-auto flex max-w-4xl flex-col justify-center bg-[#262732] p-5 -translate-y-12 rounded-md text-white  ">
+        <h1>Pay your Invoices across chains</h1>
 
-        <div className="m-24 flex flex-col">
+        <div className="m-10 flex flex-col">
           <SendForm
             handleNext={handleNext}
             formInputs={formInputs}

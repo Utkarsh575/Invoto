@@ -111,9 +111,9 @@ const SendForm = ({ handleNext, handleUpdateForm, formInputs }: Props) => {
     if (address !== '' && (!account || !active)) {
       return 'Please connect your wallet and check your selected network'
     }
-    if (address !== '' && address !== account) {
-      return "Destination address doesn't match active wallet address"
-    }
+    // if (address !== '' && address !== account) {
+    //   return "Destination address doesn't match active wallet address"
+    // }
     return ' '
   }, [address, account, active])
 
@@ -207,7 +207,7 @@ const SendForm = ({ handleNext, handleUpdateForm, formInputs }: Props) => {
           label="Destination Address"
           variant="outlined"
           value={address}
-          error={address !== '' && address !== account}
+          // error={address !== '' && address !== account}
           helperText={getAddressHelperText}
           onChange={(event) =>
             handleUpdateForm((state) => ({
@@ -218,15 +218,16 @@ const SendForm = ({ handleNext, handleUpdateForm, formInputs }: Props) => {
           InputLabelProps={{ shrink: true }}
           InputProps={{
             endAdornment: (
-              <InputAdornment position="end">
-                <Button
-                  color="secondary"
-                  onClick={handleCopyFromWallet}
-                  disabled={!account || !active}
-                >
-                  COPY FROM WALLET
-                </Button>
-              </InputAdornment>
+              // <InputAdornment position="end">
+              //   <Button
+              //     color="secondary"
+              //     onClick={handleCopyFromWallet}
+              //     disabled={!account || !active}
+              //   >
+              //     COPY FROM WALLET
+              //   </Button>
+              // </InputAdornment>
+              <></>
             ),
           }}
         />
@@ -253,15 +254,16 @@ const SendForm = ({ handleNext, handleUpdateForm, formInputs }: Props) => {
           InputLabelProps={{ shrink: true }}
           InputProps={{
             endAdornment: (
-              <InputAdornment position="end">
-                <Button
-                  color="secondary"
-                  onClick={handleAddMax}
-                  disabled={walletUSDCBalance === 0}
-                >
-                  ADD MAX
-                </Button>
-              </InputAdornment>
+              // <InputAdornment position="end">
+              //   <Button
+              //     color="secondary"
+              //     onClick={handleAddMax}
+              //     disabled={walletUSDCBalance === 0}
+              //   >
+              //     ADD MAX
+              //   </Button>
+              // </InputAdornment>
+              <></>
             ),
           }}
         />
@@ -271,7 +273,7 @@ const SendForm = ({ handleNext, handleUpdateForm, formInputs }: Props) => {
         className="mt-12"
         type="submit"
         size="large"
-        disabled={!isFormValid}
+        // disabled={!isFormValid}
       >
         NEXT
       </Button>

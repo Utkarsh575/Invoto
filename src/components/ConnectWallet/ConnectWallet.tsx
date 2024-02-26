@@ -66,7 +66,7 @@ const ConnectWallet = () => {
         <div className="relative inline">
           <Button onClick={openConnectWalletDialog}>Connect Wallet</Button>
           {error != null && (
-            <span className="absolute left-0 top-10 text-sm text-redhot-500">
+            <span className="absolute left-0 top-10 text-sm text-red-400">
               {error?.message}
             </span>
           )}

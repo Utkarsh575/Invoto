@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  .glassmorphic {
+    opacity: 0.95;
+
+    backdrop-filter: blur(50px);
+    color: white;
+  }
+
   @font-face {
     font-family: 'Circular';
     font-weight: 200;
@@ -53,7 +60,7 @@
   }
 
   body {
-    @apply bg-gradient-to-r from-purple-900 to-indigo-600;
+    @apply bg-gradient-to-br from-purple-900 to-black ;
   }
 
   h1 {

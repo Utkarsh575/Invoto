@@ -40,8 +40,8 @@ const RedeemForm: React.FC<Props> = ({ handleNext, transaction }) => {
           label="Transaction Hash"
           variant="outlined"
           value={txHash}
-          error={txHash !== '' && !transactionExists}
-          helperText={getTxHashHelperText}
+          // error={txHash !== '' && !transactionExists}
+          // helperText={getTxHashHelperText}
           onChange={(event) => setTxHash(event.target.value)}
         />
       </FormControl>
@@ -50,7 +50,7 @@ const RedeemForm: React.FC<Props> = ({ handleNext, transaction }) => {
         type="submit"
         size="large"
         fullWidth={true}
-        disabled={!transactionExists}
+        // disabled={!transactionExists}
       >
         NEXT
       </Button>

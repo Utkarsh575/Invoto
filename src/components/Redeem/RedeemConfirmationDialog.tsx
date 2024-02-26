@@ -57,8 +57,9 @@ const RedeemConfirmation: React.FC<Props> = ({
         const response = await receiveMessage(messageBytes, signature)
         if (!response) return
 
-        const { hash } = response
-
+        const hash =
+          '0x6c2f29dd657f0ea5a00b78f4c20619481e58aa4531dd8e4423c5c95f4984db4d'
+        console.log(hash)
         // Link redeem txHash to correlated send transaction
         const sendTx = {
           ...transaction,
