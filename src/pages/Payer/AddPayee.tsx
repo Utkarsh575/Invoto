@@ -11,7 +11,7 @@ const AddPayee = () => {
     e.preventDefault()
 
     let res = await axios.post(
-      'http:/localhost:3001/create-payee',
+      'http://localhost:3001/create-payee',
 
       formData,
 
