@@ -19,7 +19,7 @@ export const routes: RouteConfig[] = [
   {
     path: '/',
     label: 'Payee',
-    component: Payee,
+    component: Payer,
     nav: true,
   },
   {
