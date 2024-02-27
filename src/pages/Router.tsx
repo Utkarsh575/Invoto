@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppLayout from 'layouts/AppLayout'
 
 import Payee from './Payee/Payee'
+import Payer from './Payer/Payer'
 import Redeem from './Redeem/Redeem'
 import Send from './Send/Send'
 import Transactions from './Transactions/Transactions'
@@ -17,8 +18,8 @@ export interface RouteConfig {
 export const routes: RouteConfig[] = [
   {
     path: '/',
-    label: 'Payee',
-    component: Payee,
+    label: 'Payer',
+    component: Payer,
     nav: true,
   },
   {

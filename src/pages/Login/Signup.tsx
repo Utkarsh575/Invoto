@@ -14,18 +14,19 @@ import {
 } from 'flowbite-react'
 import { useEffect, useState } from 'react'
 
-function Login() {
+function Signup() {
   const [token, setToken] = useState<any>()
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    let res = await axios.post('http://localhost:3000/login', {
+    let res = await axios.post('http://localhost:3000/create-payer', {
       email: 'okay@gmail.com',
       password: '123456789',
     })
     setToken(res.data.token)
     console.log(res)
     localStorage.setItem('app-login-token', JSON.stringify(token))
+    localStorage.setItem('invoice-user', 'Payer')
   }
 
   // useEffect(() => {}, [token])
@@ -33,7 +34,7 @@ function Login() {
     <div className="w-[100vw] h-[100vh] flex justify-center items-center">
       <Card href="#" className="max-w-sm">
         <h5 className="flex justify-center w-[100%] text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Login
+         Payer Signup
         </h5>
         <p className="font-normal text-gray-700 dark:text-gray-400">
           We're building a new internet financial system
@@ -61,27 +62,7 @@ function Login() {
             </div>
             <TextInput id="password1" type="password" required />
           </div>
-          <div className="max-w-md">
-            <div className="mb-2 block">
-              <Label htmlFor="role" value="Select your role" />
-            </div>
-            {/* <Select id="role" required>
-              <option
-                onClick={() => {
-                  localStorage.setItem('invoice-user', 'Payee')
-                }}
-              >
-                Payee
-              </option>
-              <option
-                onClick={() => {
-                  localStorage.setItem('invoice-user', 'Payer')
-                }}
-              >
-                Payer
-              </option>
-            </Select> */}
-          </div>
+        
           <Button className="bg-black" type="submit">
             Submit
           </Button>
@@ -91,4 +72,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Signup

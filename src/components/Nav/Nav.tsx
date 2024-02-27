@@ -7,7 +7,7 @@ import ConnectWallet from 'components/ConnectWallet/ConnectWallet'
 import { routes } from 'pages/Router'
 
 import type { RouteConfig } from 'pages/Router'
-
+import Router from 'pages/Router'
 interface NavLinkProps {
   route: RouteConfig
 }
@@ -31,6 +31,7 @@ function NavLink({ route }: NavLinkProps) {
 }
 
 function Nav() {
+  // const router: Router = Router()
   return (
     <nav className="flex w-full flex-row items-center p-6">
       <Link className="flex flex-row items-center" to="/">
@@ -46,6 +47,15 @@ function Nav() {
           ))}
 
         <ConnectWallet />
+        <button
+          className="px-5 py-[0.4rem] rounded-md hover:bg-red-600 bg-red-500 border border-gray-500 ml-6"
+          onClick={() => {
+            localStorage.removeItem('app-login-token')
+            window.location.reload()
+          }}
+        >
+          Logout
+        </button>
       </div>
     </nav>
   )

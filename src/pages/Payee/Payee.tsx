@@ -1,8 +1,8 @@
-import Dashboard from './Dashboard'
+import PayeeDashboard from './Dashboard'
 const Payee = () => {
   return (
     <div>
-      <Dashboard />
+      <PayeeDashboard />
     </div>
   )
 }

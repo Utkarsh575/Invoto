@@ -1,19 +1,17 @@
-import axios from 'axios'
+import { useState, useEffect } from 'react'
 import { Table } from 'flowbite-react'
-import { useEffect, useState } from 'react'
+import axios from 'axios'
 
-const PayeeDashboard = () => {
+const PayerDashboard = () => {
   const [tdata, settdata] = useState<any>([])
 
   useEffect(() => {
-    useEffect(() => {
-      async function getTdata() {
-        let res = await axios.get('http://localhost:3001/invoices')
-        console.log(res?.data)
-        settdata(res?.data)
-      }
-      getTdata()
-    }, [])
+    async function getTdata() {
+      let res = await axios.get('http://localhost:3001/invoices')
+      console.log(res?.data)
+      settdata(res?.data)
+    }
+    getTdata()
   }, [])
 
   return (
@@ -52,4 +50,4 @@ const PayeeDashboard = () => {
   )
 }
 
-export default PayeeDashboard
+export default PayerDashboard

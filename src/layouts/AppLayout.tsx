@@ -1,5 +1,7 @@
+import axios from 'axios'
 import Nav from 'components/Nav/Nav'
 import PageLayout from 'layouts/PageLayout'
+import Auth from 'pages/Login/Auth'
 import Login from 'pages/Login/Login'
 import { useEffect, useState } from 'react'
 interface AppLayoutProps {
@@ -7,11 +9,8 @@ interface AppLayoutProps {
 }
 
 const AppLayout = ({ children }: AppLayoutProps) => {
-  const [token, setToken] = useState<string | null>('overridden-for-testing')
-  useEffect(() => {
-    // let token = localStorage.getItem('app-login-token')
-    // setToken(() => token)
-  }, [])
+  const token = localStorage.getItem('app-login-token')
+  
   return (
     <div className="flex min-h-screen flex-col">
       {token && token?.length > 0 ? (
@@ -23,7 +22,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         </>
       ) : (
         <>
-          <Login />
+          <Auth />
         </>
       )}
     </div>
