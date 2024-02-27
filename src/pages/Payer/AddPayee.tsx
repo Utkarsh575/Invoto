@@ -12,9 +12,9 @@ const AddPayee = () => {
 
     let res = await axios.post(
       'http:/localhost:3001/create-payee',
-      {
-        formData,
-      },
+
+      formData,
+
       {
         headers: {
           Authorization: `Bearer ${token}`,
