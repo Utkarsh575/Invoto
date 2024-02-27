@@ -16,16 +16,14 @@ import { useEffect, useState } from 'react'
 
 function Signup() {
   const [token, setToken] = useState<any>()
+  const [formData, setFormData] = useState<any>({})
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    let res = await axios.post('http://localhost:3000/create-payer', {
-      email: 'okay@gmail.com',
-      password: '123456789',
-    })
+    let res = await axios.post('http://localhost:3001/create-payer',formData)
     setToken(res.data.token)
     console.log(res)
-    localStorage.setItem('app-login-token', JSON.stringify(token))
+    localStorage.setItem('app-login-token', JSON.stringify(res.data.token))
     localStorage.setItem('invoice-user', 'Payer')
   }
 
@@ -34,7 +32,7 @@ function Signup() {
     <div className="w-[100vw] h-[100vh] flex justify-center items-center">
       <Card href="#" className="max-w-sm">
         <h5 className="flex justify-center w-[100%] text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-         Payer Signup
+          Payer Signup
         </h5>
         <p className="font-normal text-gray-700 dark:text-gray-400">
           We're building a new internet financial system
@@ -54,15 +52,25 @@ function Signup() {
               type="email"
               placeholder="name@invoto.com"
               required
+              onChange={(e: any) => {
+                setFormData({ ...formData, email: e.target.value })
+              }}
             />
           </div>
           <div>
             <div className="mb-2 block">
               <Label htmlFor="password1" value="Your password" />
             </div>
-            <TextInput id="password1" type="password" required />
+            <TextInput
+              id="password1"
+              type="password"
+              required
+              onChange={(e: any) => {
+                setFormData({ ...formData, password: e.target.value })
+              }}
+            />
           </div>
-        
+
           <Button className="bg-black" type="submit">
             Submit
           </Button>

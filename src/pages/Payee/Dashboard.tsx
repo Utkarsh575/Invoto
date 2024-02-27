@@ -6,14 +6,12 @@ const PayeeDashboard = () => {
   const [tdata, settdata] = useState<any>([])
 
   useEffect(() => {
-    useEffect(() => {
-      async function getTdata() {
-        let res = await axios.get('http://localhost:3001/invoices')
-        console.log(res?.data)
-        settdata(res?.data)
-      }
-      getTdata()
-    }, [])
+    async function getTdata() {
+      let res = await axios.get('http://localhost:3001/invoices')
+      console.log(res?.data)
+      settdata(res?.data)
+    }
+    getTdata()
   }, [])
 
   return (

@@ -16,16 +16,17 @@ import { useEffect, useState } from 'react'
 
 function Login() {
   const [token, setToken] = useState<any>()
-
+  const [invoiceuser, setInvoiceUser] = useState<any>()
+  const [formData, setFormData] = useState<any>({})
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    let res = await axios.post('http://localhost:3000/login', {
-      email: 'okay@gmail.com',
-      password: '123456789',
-    })
+    console.log(formData)
+    let res = await axios.post('http://localhost:3001/login', formData)
     setToken(res.data.token)
+    setInvoiceUser(res.data.role)
     console.log(res)
-    localStorage.setItem('app-login-token', JSON.stringify(token))
+    localStorage.setItem('app-login-token', JSON.stringify(res.data.token))
+    localStorage.setItem('invoice-user', JSON.stringify(res.data.role))
   }
 
   // useEffect(() => {}, [token])
@@ -53,34 +54,23 @@ function Login() {
               type="email"
               placeholder="name@invoto.com"
               required
+              onChange={(e: any) => {
+                setFormData({ ...formData, email: e.target.value })
+              }}
             />
           </div>
           <div>
             <div className="mb-2 block">
               <Label htmlFor="password1" value="Your password" />
             </div>
-            <TextInput id="password1" type="password" required />
-          </div>
-          <div className="max-w-md">
-            <div className="mb-2 block">
-              <Label htmlFor="role" value="Select your role" />
-            </div>
-            {/* <Select id="role" required>
-              <option
-                onClick={() => {
-                  localStorage.setItem('invoice-user', 'Payee')
-                }}
-              >
-                Payee
-              </option>
-              <option
-                onClick={() => {
-                  localStorage.setItem('invoice-user', 'Payer')
-                }}
-              >
-                Payer
-              </option>
-            </Select> */}
+            <TextInput
+              id="password1"
+              type="password"
+              required
+              onChange={(e: any) => {
+                setFormData({ ...formData, password: e.target.value })
+              }}
+            />
           </div>
           <Button className="bg-black" type="submit">
             Submit

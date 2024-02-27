@@ -18,8 +18,8 @@ export interface RouteConfig {
 export const routes: RouteConfig[] = [
   {
     path: '/',
-    label: 'Payer',
-    component: Payer,
+    label: 'Payee',
+    component: Payee,
     nav: true,
   },
   {

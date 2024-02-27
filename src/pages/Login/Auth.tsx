@@ -3,7 +3,9 @@ import Login from './Login'
 import Signup from './Signup'
 
 const Auth = () => {
-  const [loginToggle, setLoginToggle] = useState<boolean>(false)
+  let userType = localStorage.getItem('invoice-user')
+
+  const [loginToggle, setLoginToggle] = useState<boolean>()
   return (
     <div className="flex flex-col items-center justify-center h-[100vh]">
       <h1>Auth</h1>
