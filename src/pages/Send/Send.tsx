@@ -10,6 +10,8 @@ import { useQueryParam } from 'hooks/useQueryParam'
 import { useTransactionPolling } from 'hooks/useTransactionPolling'
 
 import type { TransactionInputs } from 'contexts/AppContext'
+import axios from 'axios'
+import { useInvoiceId } from 'contexts/store'
 
 function Send() {
   const [formInputs, setFormInputs] =
@@ -20,6 +22,7 @@ function Send() {
   const { txHash, transaction, setSearchParams } = useQueryParam()
   const navigate = useNavigate()
 
+  const invoiceId = useInvoiceId((state: any) => state.invoiceId)
   useEffect(() => {
     // Redirect to Redeem page if send tx is complete and signature is fetched or it's a redeem tx
     if (
@@ -29,17 +32,35 @@ function Send() {
         transaction.signature != null) ||
         transaction.type === TransactionType.REDEEM)
     ) {
-      navigate(
-        {
-          pathname: '/redeem',
-          search: createSearchParams({
-            [TX_HASH_KEY]: txHash,
-          }).toString(),
-        },
-        {
-          replace: true,
-        }
-      )
+      console.log(transaction)
+      const token = localStorage.getItem('app-login-token')
+      const handleinvoicepay = async () => {
+        let res = await axios.put(
+          `http://localhost:3001/invoices/${invoiceId}/pay`,
+          transaction,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+
+        console.log(res)
+        window.location.href = "http://localhost:3000/"
+      }
+
+      handleinvoicepay()
+      // navigate(
+      //   {
+      //     pathname: '/redeem',
+      //     search: createSearchParams({
+      //       [TX_HASH_KEY]: txHash,
+      //     }).toString(),
+      //   },
+      //   {
+      //     replace: true,
+      //   }
+      // )
     } else if (txHash) {
       setIsTransactionDialogOpen(true)
     }
@@ -57,12 +78,12 @@ function Send() {
 
   const handleComplete = () => {
     setIsTransactionDialogOpen(false)
-    navigate({
-      pathname: '/redeem',
-      search: createSearchParams({
-        [TX_HASH_KEY]: txHash,
-      }).toString(),
-    })
+    // navigate({
+    //   pathname: '/redeem',
+    //   search: createSearchParams({
+    //     [TX_HASH_KEY]: txHash,
+    //   }).toString(),
+    // })
   }
 
   const { handleSendTransactionPolling } = useTransactionPolling(handleComplete)
