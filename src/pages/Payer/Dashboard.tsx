@@ -51,7 +51,7 @@ const PayerDashboard = () => {
                     {e.invoice_name}
                   </Table.Cell>
                   <Table.Cell className="text-white whitespace-nowrap font-medium ">
-                    {e.wallet_address["address"]}
+                    {e.wallet_address['address']}
                   </Table.Cell>
                   <Table.Cell> {e.amount}</Table.Cell>
                   <Table.Cell>{e.invoice_description}</Table.Cell>
@@ -60,7 +60,7 @@ const PayerDashboard = () => {
                   </Table.Cell>
                   <Table.Cell>
                     <button
-                      className="px-7 py-3 text-white bg-[#3b4dc4] rounded-md font-bold mb-5 hover:bg-blue-500 border border-gray-300"
+                      className="px-7 py-2 text-black bg-[#43C484] rounded-md font-bold  hover:bg-[#3aa871] border border-[#333235]"
                       onClick={() => {
                         setInvoiceId(e._id)
                         navigate(`/send`)
