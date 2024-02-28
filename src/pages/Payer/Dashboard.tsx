@@ -50,6 +50,9 @@ const PayerDashboard = () => {
                   <Table.Cell className="text-white whitespace-nowrap font-medium ">
                     {e.invoice_name}
                   </Table.Cell>
+                  <Table.Cell className="text-white whitespace-nowrap font-medium ">
+                    {e.wallet_address["address"]}
+                  </Table.Cell>
                   <Table.Cell> {e.amount}</Table.Cell>
                   <Table.Cell>{e.invoice_description}</Table.Cell>
                   <Table.Cell className={`${true ? 'text-yellow-300' : ''}`}>
