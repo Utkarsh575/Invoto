@@ -12,12 +12,14 @@ import { Send, Redeem } from '@mui/icons-material'
 import CreateInvoice from 'pages/Payee/CreateInvoice'
 import Payee from 'pages/Payee/Payee'
 import Payer from 'pages/Payer/Payer'
+import PayeeDashboard from 'pages/Payee/Dashboard'
 import Transactions from 'pages/Transactions/Transactions'
+import { useUserType } from 'contexts/store'
 interface NavLinkProps {
   route: RouteConfig
 }
 
-function NavLink({ route }: NavLinkProps) {
+function NavLink({ route }: any) {
   const location = useLocation()
   const isSelected = location.pathname === route.path
 
@@ -36,41 +38,52 @@ function NavLink({ route }: NavLinkProps) {
 }
 
 function Nav() {
-  let userType = localStorage.getItem('invoice-user')
-  let a = localStorage.getItem('invoice-user')
+  // let userType = localStorage.getItem('invoice-user')
+  // let a = localStorage.getItem('invoice-user')
+  const userType = useUserType((state: any) => state.userType)
+  const setUserType = useUserType((state: any) => state.setUserType)
 
-  const routes: RouteConfig[] = [
-    {
-      path: '/',
-      label: 'Payer',
-      component: a === 'payer' ? Payer : Payee,
-      nav: true,
-    },
-    {
-      path: '/create',
-      label: 'Create Invoice',
-      component: CreateInvoice,
-      nav: a === 'payer' ? false : true,
-    },
-    {
-      path: '/send',
-      label: 'Transfer',
-      component: Send,
-      nav: a === 'payer' ? true : false,
-    },
-    {
-      path: '/redeem',
-      label: 'Redeem',
-      component: Redeem,
-      nav: a === 'payer' ? false : true,
-    },
-    {
-      path: '/transactions',
-      label: 'Transactions',
-      component: Transactions,
-      nav: a === 'payer' ? true : false,
-    },
-  ]
+  useEffect(() => {
+    let localUserType = localStorage.getItem('invoice-user')
+
+    setUserType(localUserType!.replace(/['"]+/g, ''))
+
+    console.log('after setting', userType)
+  }, [])
+  console.log('zustand', userType)
+
+  // const routes: RouteConfig[] = [
+  //   {
+  //     path: '/',
+  //     label: 'Payer',
+  //     component: userType === 'payer' ? Payer : Payee,
+  //     nav: true,
+  //   },
+  //   {
+  //     path: '/create',
+  //     label: 'Create Invoice',
+  //     component: CreateInvoice,
+  //     nav: userType === 'payer' ? false : true,
+  //   },
+  //   {
+  //     path: '/send',
+  //     label: 'Transfer',
+  //     component: Send,
+  //     nav: userType === 'payer' ? true : false,
+  //   },
+  //   {
+  //     path: '/redeem',
+  //     label: 'Redeem',
+  //     component: Redeem,
+  //     nav: userType === 'payer' ? false : true,
+  //   },
+  //   {
+  //     path: '/transactions',
+  //     label: 'Transactions',
+  //     component: Transactions,
+  //     nav: userType === 'payer' ? true : false,
+  //   },
+  // ]
 
   // const [utype, setUType] = useState<string | null>('')
   // useEffect(() => {
@@ -85,16 +98,73 @@ function Nav() {
       </Link>
 
       <div className="ml-auto">
-        {routes
+        {/* {routes
           .filter((route) => route.nav)
           .map((route) => (
             <NavLink key={route.path} route={route} />
-          ))}
-
-        {/* {utype === 'payee' &&
-          PayeeRoutes.filter((route) => route.nav).map((route) => (
-            <NavLink key={route.path} route={route} />
           ))} */}
+        {userType === 'payer' && (
+          <NavLink
+            route={{
+              path: '/',
+              label: 'Payer',
+              component: Payer,
+              nav: userType === 'payer' ? true : false,
+            }}
+          />
+        )}
+
+        {userType === 'payee' && (
+          <NavLink
+            route={{
+              path: '/payee',
+              label: 'Payee',
+              component: Payee,
+              nav: userType === 'payee' ? true : false,
+            }}
+          />
+        )}
+
+        {userType === 'payee' && (
+          <NavLink
+            route={{
+              path: '/create',
+              label: 'Create Invoice',
+              component: CreateInvoice,
+              nav: userType === 'payer' ? false : true,
+            }}
+          />
+        )}
+        {userType === 'payer' && (
+          <NavLink
+            route={{
+              path: '/send',
+              label: 'Transfer',
+              component: Send,
+              nav: userType === 'payer' ? true : false,
+            }}
+          />
+        )}
+        {userType === 'payee' && (
+          <NavLink
+            route={{
+              path: '/redeem',
+              label: 'Redeem',
+              component: Redeem,
+              nav: userType === 'payer' ? false : true,
+            }}
+          />
+        )}
+        {userType === 'payer' && (
+          <NavLink
+            route={{
+              path: '/transactions',
+              label: 'Transactions',
+              component: Transactions,
+              nav: userType === 'payer' ? true : false,
+            }}
+          />
+        )}
 
         <ConnectWallet />
 
@@ -102,6 +172,7 @@ function Nav() {
           className="px-5 py-[0.4rem] rounded-md hover:bg-red-600 bg-red-500 border border-gray-500 ml-6"
           onClick={() => {
             localStorage.removeItem('app-login-token')
+            setUserType('')
             // localStorage.removeItem("invoice-user")
             window.location.reload()
           }}

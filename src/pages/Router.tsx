@@ -8,6 +8,7 @@ import Redeem from './Redeem/Redeem'
 import Send from './Send/Send'
 import Transactions from './Transactions/Transactions'
 import CreateInvoice from './Payee/CreateInvoice'
+import { useUserType } from 'contexts/store'
 export interface RouteConfig {
   path: string
   label: string
@@ -18,8 +19,14 @@ export interface RouteConfig {
 export const routes: RouteConfig[] = [
   {
     path: '/',
-    label: 'Payee',
+    label: 'Payer',
     component: Payer,
+    nav: true,
+  },
+  {
+    path: '/payee',
+    label: 'Payee',
+    component: Payee,
     nav: true,
   },
   {

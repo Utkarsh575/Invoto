@@ -13,11 +13,15 @@ import {
   ToggleSwitch,
 } from 'flowbite-react'
 import { useEffect, useState } from 'react'
+import { useUserType } from 'contexts/store'
 
 function Login() {
   const [token, setToken] = useState<any>()
   const [invoiceuser, setInvoiceUser] = useState<any>()
   const [formData, setFormData] = useState<any>({})
+  const userType = useUserType((state: any) => state.userType)
+  const setUserType = useUserType((state: any) => state.setUserType)
+
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     console.log(formData)
@@ -27,6 +31,16 @@ function Login() {
     console.log(res)
     localStorage.setItem('app-login-token', JSON.stringify(res.data.token))
     localStorage.setItem('invoice-user', JSON.stringify(res.data.role))
+    console.log(userType)
+    console.log(res.data.role)
+    // setUserType(res.data.role)
+    if (res.data.role === 'payer') {
+      window.location.reload()
+    } else {
+      window.location.href = 'http://localhost:3000/payee'
+    }
+
+    // console.log("zustand state",userType)
   }
 
   // useEffect(() => {}, [token])
@@ -37,7 +51,7 @@ function Login() {
           Login
         </h5>
         <p className="font-normal text-gray-700 dark:text-gray-400">
-          We're building a new internet financial system
+          We're building a Cross Chain Invoicing system.
         </p>
         <form
           className="flex max-w-md flex-col gap-4"
