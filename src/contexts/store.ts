@@ -6,3 +6,10 @@ export const useUserType = create((set: any) => ({
     set({ userType })
   },
 }))
+
+export const useInvoiceId = create((set: any) => ({
+  invoiceId: '',
+  setInvoiceId: (invoiceId: any) => {
+    set({ invoiceId })
+  },
+}))

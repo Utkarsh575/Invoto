@@ -42,12 +42,12 @@ const AddPayee = () => {
           }}
           className="bg-[#222222] rounded-md"
         >
-          <Modal.Header className='border-gray-400'>
+          <Modal.Header className="border-gray-400">
             <span className="text-white font-semibold text-lg">
               Create Employee
             </span>
           </Modal.Header>
-          <Modal.Body className='border-gray-400'>
+          <Modal.Body className="border-gray-400">
             <div className="space-y-2">
               <p className="text-base leading-relaxed text-gray-300 dark:text-gray-400">
                 The employee would be able to send invoice requests.

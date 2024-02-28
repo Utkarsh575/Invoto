@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react'
 import { Table } from 'flowbite-react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { useInvoiceId } from 'contexts/store'
+
 
 const PayerDashboard = () => {
   const [tdata, settdata] = useState<any>([])
-
+  const navigate = useNavigate()
+  const invoiceId = useInvoiceId((state: any) => state.invoiceId)
+  const setInvoiceId = useInvoiceId((state: any) => state.setInvoiceId)
   useEffect(() => {
     async function getTdata() {
       let res = await axios.get('http://localhost:3001/invoices')
@@ -23,6 +28,9 @@ const PayerDashboard = () => {
               Invoice name
             </Table.HeadCell>
             <Table.HeadCell className=" bg-[#222222] text-[#43C484]">
+              Wallet Address
+            </Table.HeadCell>
+            <Table.HeadCell className=" bg-[#222222] text-[#43C484]">
               Amount
             </Table.HeadCell>
             <Table.HeadCell className=" bg-[#222222] text-[#43C484]">
@@ -31,19 +39,34 @@ const PayerDashboard = () => {
             <Table.HeadCell className=" bg-[#222222] text-[#43C484]">
               Status
             </Table.HeadCell>
+            <Table.HeadCell className=" bg-[#222222] text-[#43C484]"></Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y">
-            {tdata.map((e:any) => { return(
-              <Table.Row className=" border-gray-300 border-2 bg-[#222222] text-[#43C484]">
-                <Table.Cell className="text-white whitespace-nowrap font-medium ">
-                  {e.invoice_name}
-                </Table.Cell>
-                <Table.Cell> {e.amount}</Table.Cell>
-                <Table.Cell>{e.invoice_description}</Table.Cell>
-                <Table.Cell className={`${true ? 'text-yellow-300' : ''}`}>
-                  {e.status}
-                </Table.Cell>
-              </Table.Row>)
+            {tdata.map((e: any) => {
+              return (
+                <Table.Row className=" border-gray-300 border-2 bg-[#222222] text-[#43C484]">
+                  <Table.Cell className="text-white whitespace-nowrap font-medium ">
+                    {e.invoice_name}
+                  </Table.Cell>
+                  <Table.Cell>{e.wallet_address['address']}</Table.Cell>
+                  <Table.Cell> {e.amount}</Table.Cell>
+                  <Table.Cell>{e.invoice_description}</Table.Cell>
+                  <Table.Cell className={`${true ? 'text-yellow-300' : ''}`}>
+                    {e.status}
+                  </Table.Cell>
+                  <Table.Cell>
+                    <button
+                      className="px-7 py-3 text-white bg-[#3b4dc4] rounded-md font-bold mb-5 hover:bg-blue-500 border border-gray-300"
+                      onClick={() => {
+                        setInvoiceId(e._id)
+                        navigate(`/send`)
+                      }}
+                    >
+                      PAY
+                    </button>
+                  </Table.Cell>
+                </Table.Row>
+              )
             })}
           </Table.Body>
         </Table>
