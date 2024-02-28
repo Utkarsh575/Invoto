@@ -46,13 +46,16 @@ function Login() {
 
   // useEffect(() => {}, [token])
   return (
-    <div className="w-[100vw] h-[100vh] flex justify-center items-center">
-      <Card href="#" className="max-w-sm">
-        <h5 className="flex justify-center w-[100%] text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Login
+    <div className="w-[100vw] h-[100vh]  bg-[#151515] flex justify-center items-center">
+      <Card
+        href="#"
+        className="max-w-sm bg-[#222222] hover:bg-[#222222] border-[#333235]"
+      >
+        <h5 className="flex justify-center w-[100%] text-2xl font-bold tracking-tight text-[#ABF2A2] dark:text-white">
+          Payer/Payee Login
         </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">
-          We're building a Cross Chain Invoicing system.
+        <p className="font-semibold text-[#43C484] dark:text-gray-400">
+          Cross Chain Invoicing made simple.
         </p>
         <form
           className="flex max-w-md flex-col gap-4"
@@ -62,7 +65,11 @@ function Login() {
         >
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="email1" value="Your email" />
+              <Label
+                htmlFor="email1"
+                value="Your email"
+                className="text-[#43C484]"
+              />
             </div>
             <TextInput
               id="email1"
@@ -76,11 +83,16 @@ function Login() {
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="password1" value="Your password" />
+              <Label
+                htmlFor="password1"
+                value="Your password"
+                className="text-[#43C484]"
+              />
             </div>
             <TextInput
               id="password1"
               type="password"
+              className="bg-[#333235]"
               required
               onChange={(e: any) => {
                 setFormData({ ...formData, password: e.target.value })
@@ -88,7 +100,7 @@ function Login() {
             />
           </div>
           <Button className="bg-black" type="submit">
-            Submit
+            <span className="text-white font-semibold">Submit</span>
           </Button>
         </form>
       </Card>

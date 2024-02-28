@@ -169,7 +169,7 @@ function Nav() {
         <ConnectWallet />
 
         <button
-          className="px-5 py-[0.4rem] rounded-md hover:bg-red-600 bg-red-500 border border-gray-200 hover:border-gray-400 ml-6"
+          className="px-5 py-[0.4rem] rounded-md hover:bg-red-600 bg-red-500 border border-[#333235] hover:border-[#333235] ml-6 font-semibold"
           onClick={() => {
             localStorage.removeItem('app-login-token')
             setUserType('')
