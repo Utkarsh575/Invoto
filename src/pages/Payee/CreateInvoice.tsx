@@ -22,12 +22,12 @@ const CreateInvoice = () => {
   return (
     <>
       <div className="h-full text-3xl font-bold text-white -translate-y-[100%]">
-        <h1>Create Invoice</h1>
+        <h1 className="bg-[#43C484]">Create Invoice</h1>
       </div>
 
       <div className="p-0 flex items-center justify-center w-full  text-white translate-y-[-10%]">
         <form
-          className="flex w-6/12 flex-col gap-4 p-5 bg-[#262732] rounded-md shadow-md "
+          className="flex w-6/12 flex-col gap-4 p-5 bg-[#222222] rounded-md shadow-md "
           onSubmit={(e: any) => {
             handleSubmit(e)
           }}
@@ -164,8 +164,8 @@ const CreateInvoice = () => {
               </div>
             </div>
           </div>
-          <Button className="bg-green-500" type="submit">
-            Submit
+          <Button className="bg-[#3BC484] " type="submit">
+            <span className="font-bold text-lg text-black">Submit</span>
           </Button>
         </form>
       </div>

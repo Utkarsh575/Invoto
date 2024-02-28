@@ -59,8 +59,11 @@
     src: url(./fonts/Circular/CircularXXWeb-ExtraBlack.woff2) format('woff2');
   }
 
+  kjasdhkj {
+    @apply bg-gradient-to-br from-purple-900 to-black;
+  }
   body {
-    @apply bg-gradient-to-br from-purple-900 to-black ;
+    @apply bg-[#151515];
   }
 
   h1 {

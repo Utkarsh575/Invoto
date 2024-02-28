@@ -25,9 +25,9 @@ function NavLink({ route }: any) {
 
   return (
     <Link
-      className={classnames('mr-12 font-semibold', {
-        'text-white': isSelected,
-        'text-licorice-200 hover:text-apple-200 focus:text-bazooka-200  hover:bg-transparent hover:shadow-xl':
+      className={classnames('mr-12 text-lg font-bold', {
+        'text-apple-200': isSelected,
+        'text-licorice-200  focus:text-bazooka-200  hover:bg-transparent hover:shadow-xl':
           !isSelected,
       })}
       to={route.path}
@@ -94,7 +94,7 @@ function Nav() {
   return (
     <nav className="flex w-full flex-row items-center p-6">
       <Link className="flex flex-row items-center" to="/">
-        <span className="ml-4 text-3xl font-bold text-white">INVOTO</span>
+        <span className="ml-4 text-3xl font-bold text-[#ABF2A2]">INVOTO</span>
       </Link>
 
       <div className="ml-auto">
@@ -169,7 +169,7 @@ function Nav() {
         <ConnectWallet />
 
         <button
-          className="px-5 py-[0.4rem] rounded-md hover:bg-red-600 bg-red-500 border border-gray-500 ml-6"
+          className="px-5 py-[0.4rem] rounded-md hover:bg-red-600 bg-red-500 border border-gray-200 hover:border-gray-400 ml-6"
           onClick={() => {
             localStorage.removeItem('app-login-token')
             setUserType('')

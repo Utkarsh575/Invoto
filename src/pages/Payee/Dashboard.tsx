@@ -16,24 +16,24 @@ const PayeeDashboard = () => {
 
   return (
     <div>
-      <div className="overflow-x-auto text-[#ffff]">
+      <div className=" text-[#ffff]">
         <Table className=" ">
           <Table.Head className="text-lg">
-            <Table.HeadCell className="border-gray-700 bg-[#262732] text-white">
+            <Table.HeadCell className=" bg-[#222222] text-[#43C484]">
               Invoice name
             </Table.HeadCell>
-            <Table.HeadCell className="border-gray-700 bg-[#262732] text-white">
+            <Table.HeadCell className=" bg-[#222222] text-[#43C484]">
               Amount
             </Table.HeadCell>
-            <Table.HeadCell className="border-gray-700 bg-[#262732] text-white">
+            <Table.HeadCell className=" bg-[#222222] text-[#43C484]">
               Description
             </Table.HeadCell>
-            <Table.HeadCell className="border-gray-700 bg-[#262732] text-white">
+            <Table.HeadCell className=" bg-[#222222] text-[#43C484]">
               Status
             </Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y">
-            <Table.Row className=" border-gray-700 bg-[#262732] text-white">
+            <Table.Row className=" border-2 border-gray-300 bg-[#222222] text-[#43C484]">
               <Table.Cell className="text-white whitespace-nowrap font-medium ">
                 {tdata.name}
               </Table.Cell>

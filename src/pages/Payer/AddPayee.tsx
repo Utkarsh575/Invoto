@@ -27,7 +27,7 @@ const AddPayee = () => {
   return (
     <>
       <button
-        className="px-7 py-3 bg-blue-400 rounded-md font-bold mb-5 hover:bg-blue-500 border border-gray-300"
+        className="px-7 py-3 bg-[#3BC484] rounded-md font-bold mb-5 hover:bg-blue-500 border border-gray-300"
         onClick={() => {
           setShowForm(true)
         }}
@@ -40,11 +40,16 @@ const AddPayee = () => {
           onSubmit={(e: any) => {
             handleSubmit(e)
           }}
+          className="bg-[#222222] rounded-md"
         >
-          <Modal.Header>Create Employee</Modal.Header>
-          <Modal.Body>
+          <Modal.Header className='border-gray-400'>
+            <span className="text-white font-semibold text-lg">
+              Create Employee
+            </span>
+          </Modal.Header>
+          <Modal.Body className='border-gray-400'>
             <div className="space-y-2">
-              <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              <p className="text-base leading-relaxed text-gray-300 dark:text-gray-400">
                 The employee would be able to send invoice requests.
               </p>
 
@@ -66,10 +71,10 @@ const AddPayee = () => {
               />
             </div>
           </Modal.Body>
-          <Modal.Footer className="flex items-center justify-center">
+          <Modal.Footer className="flex items-center justify-center border-gray-400">
             <button
               type="submit"
-              className="px-5 py-2 rounded-md border text-white border-gray-300 bg-green-500 hover:bg-green-600 font-semibold"
+              className="px-5 py-2 rounded-md border text-black border-gray-300 bg-[#3BC484] hover:bg-[#43C484] font-semibold"
               // onClick={() => setShowForm(false)}
             >
               Create
