@@ -33,16 +33,18 @@ const PayerDashboard = () => {
             </Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y">
-            <Table.Row className=" border-gray-300 border-2 bg-[#222222] text-[#43C484]">
-              <Table.Cell className="text-white whitespace-nowrap font-medium ">
-                {tdata.name}
-              </Table.Cell>
-              <Table.Cell> {tdata.amt}</Table.Cell>
-              <Table.Cell>{tdata.desc}</Table.Cell>
-              <Table.Cell className={`${true ? 'text-yellow-300' : ''}`}>
-                Pending
-              </Table.Cell>
-            </Table.Row>
+            {tdata.map((e:any) => { return(
+              <Table.Row className=" border-gray-300 border-2 bg-[#222222] text-[#43C484]">
+                <Table.Cell className="text-white whitespace-nowrap font-medium ">
+                  {e.invoice_name}
+                </Table.Cell>
+                <Table.Cell> {e.amount}</Table.Cell>
+                <Table.Cell>{e.invoice_description}</Table.Cell>
+                <Table.Cell className={`${true ? 'text-yellow-300' : ''}`}>
+                  {e.status}
+                </Table.Cell>
+              </Table.Row>)
+            })}
           </Table.Body>
         </Table>
       </div>

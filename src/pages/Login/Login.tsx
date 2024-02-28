@@ -33,6 +33,7 @@ function Login() {
     localStorage.setItem('invoice-user', JSON.stringify(res.data.role))
     console.log(userType)
     console.log(res.data.role)
+    localStorage.setItem('payee-email', JSON.stringify(formData.email))
     // setUserType(res.data.role)
     if (res.data.role === 'payer') {
       window.location.reload()

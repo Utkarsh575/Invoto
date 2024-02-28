@@ -4,15 +4,20 @@ import { useState } from 'react'
 
 const CreateInvoice = () => {
   const [formData, setFormData] = useState<any>({})
+  const [walletData, setWalletData] = useState<any>({})
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     console.log(e.target.value)
+    formData.wallet_address = walletData
     console.log(formData)
 
+    const token = localStorage.getItem('app-login-token')
     let res = await axios.post(
-      'https://musical-worthy-pheasant.ngrok-free.app/createInvoice',
+      'http://localhost:3001/invoices',formData,     
       {
-        body: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
     )
 
@@ -47,7 +52,7 @@ const CreateInvoice = () => {
                 placeholder=" Enter the payer email"
                 required
                 onChange={(e: any) => {
-                  setFormData({ ...formData, email: e.target.value })
+                  setFormData({ ...formData, payerEmail: e.target.value })
                 }}
               />
               <div>
@@ -64,7 +69,7 @@ const CreateInvoice = () => {
                   placeholder=" Enter the invoice name"
                   required
                   onChange={(e: any) => {
-                    setFormData({ ...formData, name: e.target.value })
+                    setFormData({ ...formData, invoice_name: e.target.value })
                   }}
                 />
                 <div>
@@ -81,7 +86,7 @@ const CreateInvoice = () => {
                     placeholder=" Enter the invoice description"
                     required
                     onChange={(e: any) => {
-                      setFormData({ ...formData, desc: e.target.value })
+                      setFormData({ ...formData, invoice_description: e.target.value })
                     }}
                   />
                 </div>
@@ -100,7 +105,7 @@ const CreateInvoice = () => {
                     placeholder=" Enter the invoice amount"
                     required
                     onChange={(e: any) => {
-                      setFormData({ ...formData, amt: e.target.value })
+                      setFormData({ ...formData, amount: e.target.value })
                     }}
                   />
                 </div>
@@ -122,7 +127,7 @@ const CreateInvoice = () => {
                   placeholder=" Enter the chain name"
                   required
                   onChange={(e: any) => {
-                    setFormData({ ...formData, chainName: e.target.value })
+                    setWalletData({ ...walletData, chain_name: e.target.value })
                   }}
                 />
               </div>
@@ -140,7 +145,7 @@ const CreateInvoice = () => {
                   placeholder=" Enter the chain id"
                   required
                   onChange={(e: any) => {
-                    setFormData({ ...formData, chainId: e.target.value })
+                    setWalletData({ ...walletData, chain_number: e.target.value })
                   }}
                 />
               </div>
@@ -158,7 +163,7 @@ const CreateInvoice = () => {
                   placeholder=" Enter the receiving wallet address"
                   required
                   onChange={(e: any) => {
-                    setFormData({ ...formData, addr: e.target.value })
+                    setWalletData({ ...walletData, address: e.target.value })
                   }}
                 />
               </div>
