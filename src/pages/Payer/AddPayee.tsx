@@ -26,14 +26,20 @@ const AddPayee = () => {
   }
   return (
     <>
-      <button
-        className="px-7 py-3 bg-[#3BC484] rounded-md font-bold mb-5 hover:bg-[#3aa871] border-[#333235]"
-        onClick={() => {
-          setShowForm(true)
-        }}
-      >
-        Create Employee
-      </button>
+      <div className="flex items-center justify-between">
+        <h5 className="font-semibold text-[#ABF2A2] text-4xl mb-5">
+          Your Invoices
+        </h5>
+
+        <button
+          className="px-7 py-3 bg-[#3BC484] rounded-md font-bold mb-5 hover:bg-[#3aa871] border-[#333235]"
+          onClick={() => {
+            setShowForm(true)
+          }}
+        >
+          Add Employee
+        </button>
+      </div>
 
       <Modal show={showForm} onClose={() => setShowForm(false)}>
         <form

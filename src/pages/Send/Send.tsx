@@ -89,11 +89,13 @@ function Send() {
   const { handleSendTransactionPolling } = useTransactionPolling(handleComplete)
 
   return (
-    <>
-      <div className="item-center mx-auto flex max-w-4xl flex-col justify-center bg-[#262732] p-5 -translate-y-12 rounded-md text-white  ">
-        <h1>Pay your Invoices across chains</h1>
+    <div className='h-[59vh]'>
+      <div className="item-center mx-auto flex max-w-4xl flex-col justify-center bg-[#222222] border-2 border-[#333235] p-5 -translate-y-12 rounded-md text-white  overflow-hidden">
+      <h5 className="font-semibold text-[#ABF2A2] text-5xl mb-2 text-center mt-2">
+        Pay your Invoices Cross Chain
+      </h5>
 
-        <div className="m-10 flex flex-col">
+        <div className="mx-10 my-5  p-5 flex flex-col ">
           <SendForm
             handleNext={handleNext}
             formInputs={formInputs}
@@ -118,7 +120,7 @@ function Send() {
           transaction={transaction}
         />
       )}
-    </>
+    </div>
   )
 }
 

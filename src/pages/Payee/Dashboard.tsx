@@ -16,6 +16,9 @@ const PayeeDashboard = () => {
 
   return (
     <div>
+      <h5 className="font-semibold text-[#ABF2A2] text-4xl mb-5">
+        Your Invoices
+      </h5>
       <div className=" overflow-x-auto text-[#ffff] border-[#333235] rounded-md">
         <Table className="border-0 border-[#333235] rounded-lg ">
           <Table.Head className="text-lg rounded-md  border-2 border-[#333235]">

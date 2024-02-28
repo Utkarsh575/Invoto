@@ -167,6 +167,7 @@ const SendForm = ({ handleNext, handleUpdateForm, formInputs }: Props) => {
           <Select
             id="source"
             label="Source"
+            className="bg-[#222222]"
             error={
               account !== null &&
               active &&
@@ -187,6 +188,7 @@ const SendForm = ({ handleNext, handleUpdateForm, formInputs }: Props) => {
             id="target"
             label="Destination"
             value={target}
+            className="bg-[#222222]"
             onChange={(event) =>
               handleUpdateForm((state) => ({
                 ...state,
@@ -201,11 +203,12 @@ const SendForm = ({ handleNext, handleUpdateForm, formInputs }: Props) => {
         </FormControl>
       </div>
 
-      <FormControl className="mt-12" fullWidth>
+      <FormControl className="mt-10" fullWidth>
         <TextField
           id="address"
           label="Destination Address"
-          variant="outlined"
+          className="bg-[#222222]"
+          variant="filled"
           value={address}
           // error={address !== '' && address !== account}
           helperText={getAddressHelperText}
@@ -233,11 +236,12 @@ const SendForm = ({ handleNext, handleUpdateForm, formInputs }: Props) => {
         />
       </FormControl>
 
-      <FormControl className="mt-6" fullWidth>
+      <FormControl className="mt-5" fullWidth>
         <TextField
           id="amount"
           label="Amount"
-          variant="outlined"
+          variant="filled"
+          className="bg-[#222222]"
           type="number"
           error={
             amount !== '' &&
@@ -270,12 +274,12 @@ const SendForm = ({ handleNext, handleUpdateForm, formInputs }: Props) => {
       </FormControl>
 
       <Button
-        className="mt-12"
+        className="mt-5"
         type="submit"
         size="large"
         // disabled={!isFormValid}
       >
-        NEXT
+        <span className="font-bold">NEXT</span>
       </Button>
     </form>
   )
