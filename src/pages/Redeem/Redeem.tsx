@@ -15,84 +15,90 @@ import {
 } from 'contexts/AppContext'
 import { useQueryParam } from 'hooks/useQueryParam'
 import { useTransactionPolling } from 'hooks/useTransactionPolling'
+import axios from 'axios'
+import { useInvoiceId } from 'contexts/store'
 
 function Redeem() {
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] = useState(true)
-  const [isTransactionDialogOpen, setIsTransactionDialogOpen] = useState(false)
-  const {
-    txHash,
-    transaction = {
-      source: 'ETH',
-      target: 'ARB',
-      address: '0xc9501D1Eb0306765e4cc9302981f99d218F0036a',
-      amount: '1',
-      hash: '0x6c2f29dd657f0ea5a00b78f4c20619481e58aa4531dd8e4423c5c95f4984db4d',
-      type: 'SEND',
-      status: 'COMPLETE',
-      messageBytes:
-        '0x000000000000000000000003000000000003ed0a0000000000000000000000009f3b8679c73c2fef8b59b4f3444d4e156fb70aa50000000000000000000000009f3b8679c73c2fef8b59b4f3444d4e156fb70aa50000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001c7d4b196cb0c7b01d743fbc6116a902379c7238000000000000000000000000c9501d1eb0306765e4cc9302981f99d218f0036a00000000000000000000000000000000000000000000000000000000000f42400000000000000000000000004c55eda7e6bc090e60635421b8b43a065927897c',
-      messageHash:
-        '0x20a848ca5e8531143344b250784073b6f8387fd1269ebb4f8e72b3d3ef3b8ce3',
-      signature:
-        '0x2fa53a29c95e902205ba36cf6dfcd0fb7574b86dd998721693ab90cb670712b9466634f4316a4c635700e8011b3c1000ff572bc4b4290452586331860880e7291ca08c26be603425b29a6ebfdaf9f86e429fb1f3d08de9262bd90a6555b7047b8c568797e3889cad21bb3f37ab0fba451608da7745ec4356da4451d0f10bcded2f1b',
-      nextHash: '',
-    } as any,
-    setSearchParams,
-  } = useQueryParam()
-  setSearchParams(
-    '0x6c2f29dd657f0ea5a00b78f4c20619481e58aa4531dd8e4423c5c95f4984db4d'
-  )
+  const [isTransactionDialogOpen, setIsTransactionDialogOpen] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+  const [tdata, settdata] = useState<any>([])
+  const invoiceId = useInvoiceId((state: any) => state.invoiceId)
+  let { txHash, transaction, setSearchParams } = useQueryParam()
+  // setSearchParams(
+  //   '0x6c2f29dd657f0ea5a00b78f4c20619481e58aa4531dd8e4423c5c95f4984db4d'
+  // )
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (transaction) {
-      // if (transaction.type === TransactionType.SEND) {
-      //   // If send tx is incomplete or signature is missing, redirect to Send page
-      //   if (
-      //     transaction.status !== TransactionStatus.COMPLETE ||
-      //     transaction.signature == null
-      //   ) {
-      //     navigate(
-      //       {
-      //         pathname: '/',
-      //         search: createSearchParams({
-      //           [TX_HASH_KEY]: txHash,
-      //         }).toString(),
-      //       },
-      //       {
-      //         replace: true,
-      //       }
-      //     )
-      //   } else if (
-      //     transaction.status === TransactionStatus.COMPLETE &&
-      //     transaction.signature != null
-      //   ) {
-      //     // If send tx doesn't have a nextHash, open Redeem confirmation modal
-      //     if (transaction.nextHash == null) {
-      //       setIsConfirmationDialogOpen(true)
-      //       // If send tx has a nextHash, replace with redeem tx hash
-      //     } else {
-      //       setSearchParams(
-      //         { [TX_HASH_KEY]: transaction.nextHash },
-      //         { replace: true }
-      //       )
-      //     }
-      //   }
-      //   // If redeem tx is not complete, open Redeem transaction modal
-      // } else
-      if (
-        transaction.type === TransactionType.REDEEM &&
-        transaction.status !== TransactionStatus.COMPLETE
-      ) {
+    const token = localStorage.getItem('app-login-token')
+    async function getTdata() {
+      let res = await axios.get(
+        `http://localhost:3001/invoices/65df8b8eaf51b08f664d10c1/transaction`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      console.log(res?.data)
+      settdata(res?.data)
+      transaction = res?.data
+      console.log(transaction)
+      transaction!['nextHash'] = ''
+      console.log(transaction)
+      if (transaction) {
+        // transaction.type = "REDEEM"
+        // if (transaction.type === TransactionType.SEND) {
+        //   // If send tx is incomplete or signature is missing, redirect to Send page
+        //   if (
+        //     transaction.status !== TransactionStatus.COMPLETE ||
+        //     transaction.signature == null
+        //   ) {
+        //     navigate(
+        //       {
+        //         pathname: '/',
+        //         search: createSearchParams({
+        //           [TX_HASH_KEY]: txHash,
+        //         }).toString(),
+        //       },
+        //       {
+        //         replace: true,
+        //       }
+        //     )
+        //   } else if (
+        //     transaction.status === TransactionStatus.COMPLETE &&
+        //     transaction.signature != null
+        //   ) {
+        //     // If send tx doesn't have a nextHash, open Redeem confirmation modal
+        //     if (transaction.nextHash == null) {
+        //       setIsConfirmationDialogOpen(true)
+        //       // If send tx has a nextHash, replace with redeem tx hash
+        //     } else {
+        //       setSearchParams(
+        //         { [TX_HASH_KEY]: transaction.nextHash },
+        //         { replace: true }
+        //       )
+        //     }
+        //   }
+        //   // If redeem tx is not complete, open Redeem transaction modal
+        // } else
+        // if (
+        //   transaction.type === TransactionType.REDEEM &&
+        //   transaction.status !== TransactionStatus.COMPLETE
+        // ) {
         setIsTransactionDialogOpen(true)
+        // }
+        setIsLoading(true)
       }
+      setSearchParams(res?.data.hash)
+      txHash = res?.data.hash
+      console.log(res?.data.hash)
+      console.log(txHash)
     }
-    setSearchParams(
-      '0x6c2f29dd657f0ea5a00b78f4c20619481e58aa4531dd8e4423c5c95f4984db4d'
-    )
-    console.log(txHash)
-  }, [navigate, setSearchParams, transaction, txHash])
+    getTdata()
+  }, [])
 
   const handleNext = (txHash: string) => {
     setSearchParams({ [TX_HASH_KEY]: txHash }, { replace: true })
@@ -105,7 +111,7 @@ function Redeem() {
   }
 
   const handleComplete = () => {
-    setIsTransactionDialogOpen(false)
+    setIsTransactionDialogOpen(true)
   }
 
   const handleReturn = () => {
@@ -116,7 +122,6 @@ function Redeem() {
 
   const { handleRedeemTransactionPolling } =
     useTransactionPolling(handleComplete)
-  console.log(txHash)
 
   return (
     <>
@@ -156,21 +161,26 @@ function Redeem() {
         )}
       </div> */}
 
-      {transaction && isConfirmationDialogOpen && (
-        <RedeemConfirmationDialog
-          handleClose={() => setIsConfirmationDialogOpen(false)}
-          handleNext={handleConfirmation}
-          open={isConfirmationDialogOpen}
-          transaction={transaction}
-        />
-      )}
+      {isLoading && (
+        <>
+          <div className='text-white'>transaction</div>
+          {transaction && isConfirmationDialogOpen && (
+            <RedeemConfirmationDialog
+              handleClose={() => setIsConfirmationDialogOpen(false)}
+              handleNext={handleConfirmation}
+              open={isConfirmationDialogOpen}
+              transaction={transaction}
+            />
+          )}
 
-      {transaction && isTransactionDialogOpen && (
-        <TransactionDialog
-          handleTransactionPolling={handleRedeemTransactionPolling}
-          open={isTransactionDialogOpen}
-          transaction={transaction}
-        />
+          {transaction && isTransactionDialogOpen && (
+            <TransactionDialog
+              handleTransactionPolling={handleRedeemTransactionPolling}
+              open={isTransactionDialogOpen}
+              transaction={transaction}
+            />
+          )}
+        </>
       )}
     </>
   )
