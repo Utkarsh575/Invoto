@@ -2,13 +2,49 @@ import axios from 'axios'
 import { Table } from 'flowbite-react'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useInvoiceId } from 'contexts/store'
+import { useInvoiceId, useTransactionStore } from 'contexts/store'
 
 const PayeeDashboard = () => {
   const [tdata, settdata] = useState<any>([])
   const invoiceId = useInvoiceId((state: any) => state.invoiceId)
   const setInvoiceId = useInvoiceId((state: any) => state.setInvoiceId)
+
+  const transactData = useTransactionStore((state: any) => state.transactData)
+  const setTransactData = useTransactionStore(
+    (state: any) => state.setTransactData
+  )
   const navigate = useNavigate()
+
+  const handleRedeem = async (id: any) => {
+    const token = localStorage.getItem('app-login-token')
+
+    if (id) {
+      let res = await axios.get(
+        `http://localhost:3001/invoices/${id}/transaction`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      if (res.data) {
+        console.log('get transation', res.data)
+
+        let t = res?.data
+        t['nextHash'] = ''
+        console.log('t in dashboard :', t)
+
+        setTransactData(t)
+
+        navigate(`/redeem?${t['hash']}`)
+      } else {
+        console.log('in dhasboard', 'error')
+      }
+    } else {
+      console.log('dashboard id is hale hale', id)
+    }
+  }
+
   useEffect(() => {
     async function getTdata() {
       let res = await axios.get('http://localhost:3001/invoices')
@@ -60,7 +96,7 @@ const PayeeDashboard = () => {
                       className="px-7 py-2 text-black bg-[#43C484] rounded-md font-bold  hover:bg-[#3aa871] border border-[#333235]"
                       onClick={() => {
                         setInvoiceId(e._id)
-                        navigate(`/redeem`)
+                        handleRedeem(e._id)
                       }}
                     >
                       Redeem

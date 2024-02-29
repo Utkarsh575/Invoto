@@ -13,3 +13,10 @@ export const useInvoiceId = create((set: any) => ({
     set({ invoiceId })
   },
 }))
+
+export const useTransactionStore = create((set: any) => ({
+  transactData: {},
+  setTransactData: (transactData: any) => {
+    set({ transactData })
+  },
+}))
