@@ -99,7 +99,7 @@ The client app will now be running on: http://localhost:3000.
 ## Setting up the backend repo
 
 ```
-git clone https://github.com/AryaKesharwani/Invoto-backend.git
+git clone https://github.com/AryaKesharwani/circle-app-backend.git
 ```
 Install npm dependencies
 
