@@ -1,16 +1,73 @@
-# CCTP Sample App
+# Invoto (cross chain invoicing for teams)
 
-A sample app used to demonstrate CCTP step by step capabilities on testnet. The app currently supports Ethereum Sepolia, Avalanche Fuji C-Chain, and Arbitrum Sepolia testnets.
+Invoto is a cross chain invoicing solution that enables businesses , freelancers and teams to create , manage and pay invoices in USDC to their users accross chains.
+Invoto is powered by Circle's CCTP (Cross chain transactions protocol) that enables payment across multiple chains.
 
-![](./docs/screenshot.png)
+## what is Circle's CCTP ?
+> Cross-Chain Transfer Protocol (CCTP) is a permissionless on-chain utility that facilitates USDC transfers securely between blockchains networks via native burning and minting. Circle created it to improve capital efficiency and minimize trust requirements when using USDC across blockchain networks. CCTP enables developers to build multi-chain applications that provide secure, 1:1 transfers of USDC across blockchains for their users.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Usecase and Motivation
+While Decentralized Finance (DeFi) offers immense potential, interoperability remains a significant hurdle to its widespread adoption.
+Invoto makes the tedious part of managing invoicing payments accross chain for your enterprise very easy. Using Invoto small as well as large businesses can pay their employee's invoices in thier preffered chain. With Invoto everyone can the advancatge of Cross Chain Payments and enhance their journey in Web3.
 
-# Setup
+## Target Track
+Solving Defi interoperability using CCTP and Cross chain Payments.
 
-## Install dependencies
 
-Install NVM
+## Gallery
+Demo Link :- https://youtu.be/3x_O1ii2gZ4
+
+#### Payer creation
+![image](https://github.com/Utkarsh575/Invoto/assets/35625228/47c5f494-98a9-492e-98c8-c0576ab2e573)
+
+#### Payer/Payee Onboarding
+![image](https://github.com/Utkarsh575/Invoto/assets/35625228/045f27b3-7ffb-4b6e-a2ed-8c5f47a26489)
+
+#### Payee Creation
+![image](https://github.com/Utkarsh575/Invoto/assets/35625228/88b137ed-0670-4323-8699-a7d14352ffb6)
+
+#### Payer Dashboard
+![image](https://github.com/Utkarsh575/Invoto/assets/35625228/f8ce89f8-2f56-4a42-abeb-d95c319fb068)
+
+#### Payment/Transfer
+![image](https://github.com/Utkarsh575/Invoto/assets/35625228/b0c8ff64-1184-41cb-9eaa-dda4a640d6be)
+
+#### Transfer to different wallet
+![image](https://github.com/Utkarsh575/Invoto/assets/35625228/ac6c3fe1-b06c-47fc-b99d-0dec5fe65345)
+
+#### Payee Dashboard
+![image](https://github.com/Utkarsh575/Invoto/assets/35625228/9237ae3a-8601-4bd8-9ac7-a03ef69e12e2)
+
+#### Invoice Creation
+![image](https://github.com/Utkarsh575/Invoto/assets/35625228/811a34b5-f3e6-45be-a61c-e1fb517a890f)
+
+#### Reciving Cross chain payment
+![image](https://github.com/Utkarsh575/Invoto/assets/35625228/93a63a9d-896b-4d51-9cf0-bbdb778b9e53)
+
+#### SEND TRANSACTION USING SEPOLIA TESTNET
+![image](https://github.com/Utkarsh575/Invoto/assets/35625228/a7e7b717-373b-48f3-8790-6f5a670dd503)
+
+#### RECIVE TRANSATION USING ARBITRUM SEPOLIA
+![image](https://github.com/Utkarsh575/Invoto/assets/35625228/6b000250-0081-47b7-a14d-e67f175a946d)
+
+## Techstack used:-
+| Frontend & Web3    | Backend |
+| -------- | ------- |
+| React Typescript |  Node js  |
+| Zustand           |  Express js     |
+| Tilwind CSS Flowbyte    | MongoDB    |
+|  web3-react and ethers |   Mongoose   |
+
+
+# Setup Invoto locally
+
+## Clone the frontend repository 
+```
+git clone https://github.com/Utkarsh575/Invoto.git
+```
+## Install dependencies for the client
+
+Install NVM 
 
 ```
 # Install nvm using brew
@@ -28,103 +85,34 @@ nvm use
 Install npm dependencies
 
 ```
-yarn install
+npm install
 ```
 
 ## Running the app
 
-Run the sample app locally:
-
 ```
-yarn start
+npm start
 ```
 
-The sample app will now be running on: http://localhost:3000.
+The client app will now be running on: http://localhost:3000.
 
-## Testing
-
-Launch the test runner in interactive watch mode
+## Setting up the backend repo
 
 ```
-yarn test
+git clone https://github.com/AryaKesharwani/Invoto-backend.git
 ```
-
-Run tests with test converage.
-
-```
-yarn test:unit:coverage
-```
-
-### Linting/Formatting/Type Checks
-
-We use eslint, prettier and typescript to validate our code. In combination with husky and lint-staged, we run a check on every precommit on staged changes.
-
-You can also use `yarn check-all` or `yarn fix-all` to validate or fix all lint/format/typing issues. See [package.json](./package.json) for more details.
-
-### Continuous Integration using Github Actions
-
-We use Github actions to run linter and all the tests. The workflow configuration can be found in [github/workflows/ci.yml](./.github/workflows/ci.yml)
-
-### Build and deploy
-
-Build the app into static bundle
+Install npm dependencies
 
 ```
-yarn build
+npm install
 ```
 
-To deploy, install and run `serve`
+## Running the app
+
+Run the backend server locally:
 
 ```
-yarn global add serve serve -s build
+npm start
 ```
+The server will now be running on: http://localhost:3001.
 
-See [deployment docs](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-# Instructions
-
-## Adding a new chain
-
-We have two config files which will be need to be updated to add a new chain support.
-
-1. Add the chain enum and definitions
-
-- In `./src/constants/chains.ts`, we need to add some enums and details for the chain to support. Add the new chain details to `Chain`, `SupportedChainId`, `SupportedChainIdHex`, `CHAIN_TO_CHAIN_ID`, `CHAIN_TO_CHAIN_NAME`, `DestinationDomain` and `CHAIN_ID_HEXES_TO_PARAMETERS`.
-
-2. Add the addresses for the new chain
-
-- In `./src/constants/addresses.ts`, we need to add the contract addresses for the new chain to support. For `CHAIN_IDS_TO_USDC_ADDRESSES`, `CHAIN_IDS_TO_TOKEN_MESSENGER_ADDRESSES` and `CHAIN_IDS_TO_MESSAGE_TRANSMITTER_ADDRESSES`, add the coressponding addresses for the new chain. This will allow the hooks to interact with the relevant addresses
-
-3. Add the logo for the new chain
-
-- We will also need to upload a svg image for the UI to display the chain logo. In `./src/assets/chains/`, add a svg logo for the new chain and then in `index.ts`, add the new icon to the `CHAIN_ICONS` map.
-
-4. Add the new chain to the form dropdown selector
-
-- In `./components/Send/SendForm.tsx`, Add the new chain to `CHAIN_SELECT_ITEMS` and this should automatically update the UI dropdown.
-
-## Configuration for Mainnet
-
-This sample app is development for testnet use, but if we want to update this for mainnet, these are the steps needed.
-
-1. Update the chain definitions to mainnet
-
-- In `./src/constants/chains.ts`, update the `SupportedChainId`, `SupportedChainIdHex` and `ChainParameter` objects with mainnet values. We may want to rename the enums as well.
-
-2. Update the addresses to mainnet
-
-- In `./src/constants/addresses.ts`, update the addresses with mainnet addresses. The mainnet address values can be found on https://developers.circle.com/stablecoin/docs.cctp-protocol-contract.
-
-3. Update the attestation API URL
-
-- In `./src/constants/index.ts`, update `IRIS_ATTESTATION_API_URL` with the mainnet value. The mainnet API url can be found on https://developers.circle.com/stablecoin/docs/cctp-getting-started#attestation-service-api.
-
-## Setup Typechain
-
-We use Typechain in this sample app to easily integrate smart contract with generated Typescript bindings. If we want to add some functionality and update the abis, we can update the abis as necessary in `./src/abis` and then run the following command to update the generated files.
-
-```
-typechain --target=ethers-v5 --out-dir src/typechain src/abis/*.json
-```
-
-This generates `typechain` folder under `src` containing contract types to be used by our hooks
