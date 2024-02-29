@@ -13,7 +13,11 @@ Invoto makes the tedious part of managing invoicing payments accross chain for y
 ## Target Track
 Solving Defi interoperability using CCTP and Cross chain Payments.
 
+## Challanges we faced 
+We faced chalanges implimenting the cross wallet trasaction but we over came it using Circle's developer documentations.
 
+## Future Plans
+We plan to imporve the over all UX of the application by adding more intuitive features for advance invoice management, integrate pdf uploads for bills as part of the invoice aswell as increase the pool of supported chains.
 ## Gallery
 Demo Link :- https://youtu.be/3x_O1ii2gZ4
 
