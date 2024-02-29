@@ -81,7 +81,6 @@ function Redeem() {
 
   return (
     <>
-      <div className="text-white">transaction</div>
       {transaction && isConfirmationDialogOpen && (
         <RedeemConfirmationDialog
           handleClose={() => setIsConfirmationDialogOpen(false)}

@@ -91,6 +91,7 @@ const RedeemConfirmation: React.FC<Props> = ({
 
   return (
     <Dialog
+      className="bg-[#222222]"
       maxWidth="md"
       fullWidth={true}
       onClose={handleClose}
