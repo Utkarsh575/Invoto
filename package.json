@@ -1,8 +1,8 @@
 {
-  "name": "cctp-sample-app",
+  "name": "invoto",
   "version": "0.1.0",
-  "description": "CCTP Sample App",
-  "author": "Circle",
+  "description": "Invoto Cross chain invoicing",
+  "author": "utkarsh575",
   "license": "MIT",
   "private": true,
   "scripts": {
